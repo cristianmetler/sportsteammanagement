@@ -14,21 +14,21 @@ public class TeamEntity {
 //rating score
 	
 	@Entity
-	@NamedQueries({
-			@NamedQuery(name = "TeamEntity.findTeamsByName", query = "SELECT e FROM TeamEntity e WHERE e.teamName = :teamName"),
-			@NamedQuery(name = "TeamEntity.findPTeamsBySportsCategory", query = "SELECT e FROM TeamEntity e WHERE e.sportsCategory = :sportsCategory"),
-			@NamedQuery(name = "TeamEntity.findTeamsByRatingScore", query = "SELECT e FROM TeamEntity e WHERE e.ratingScore = :ratingScore"),
-			@NamedQuery(name = "TeamEntity.deleteTeam", query = "DELETE FROM TeamEntity e WHERE e.teamName = :teamName"),
-			@NamedQuery(name = "TeamEntity.retrieveAllTeams", query = "SELECT e FROM TeamEntity e"),		
-			@NamedQuery(name = "TeamEntity.deleteAllTeams", query = "DELETE FROM TeamEntity e"),
-	})
+//	@NamedQueries({
+//			@NamedQuery(name = "TeamEntity.findTeamsByName", query = "SELECT e FROM TeamEntity e WHERE e.teamName = :teamName"),
+//			@NamedQuery(name = "TeamEntity.findPTeamsBySportsCategory", query = "SELECT e FROM TeamEntity e WHERE e.sportsCategory = :sportsCategory"),
+//			@NamedQuery(name = "TeamEntity.findTeamsByRatingScore", query = "SELECT e FROM TeamEntity e WHERE e.ratingScore = :ratingScore"),
+//			@NamedQuery(name = "TeamEntity.deleteTeam", query = "DELETE FROM TeamEntity e WHERE e.teamName = :teamName"),
+//			@NamedQuery(name = "TeamEntity.retrieveAllTeams", query = "SELECT e FROM TeamEntity e"),		
+//			@NamedQuery(name = "TeamEntity.deleteAllTeams", query = "DELETE FROM TeamEntity e"),
+//	})
 	@Table(name = "teams")
 	public class PlayerEntity {
 
 			private static final long serialVersionUID = -6134776758947464648L;
 
 			@Id
-			@GeneratedValue(strategy = GenerationType.TABLE)
+			@GeneratedValue(strategy = GenerationType.IDENTITY)
 			@Column(name = "id")
 			private long id;
 			
