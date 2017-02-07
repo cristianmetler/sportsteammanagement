@@ -1,0 +1,13 @@
+com\fortech\stm\configuration\SportsTeamConfiguration.class
+com\fortech\stm\model\TeamEntity$PlayerEntity.class
+com\fortech\stm\model\TeamEntity.class
+com\fortech\stm\services\TeamService.class
+com\fortech\stm\configuration\SportsTeamInitializer.class
+com\fortech\stm\services\PlayerService.class
+com\fortech\stm\services\impl\PlayerServiceImpl.class
+com\fortech\stm\services\impl\DealServiceImpl.class
+com\fortech\stm\controller\SportsTeamMGMController.class
+com\fortech\stm\services\DealService.class
+com\fortech\stm\model\PlayerEntity.class
+com\fortech\stm\services\impl\TeamServiceImpl.class
+com\fortech\stm\model\DealEntity.class
