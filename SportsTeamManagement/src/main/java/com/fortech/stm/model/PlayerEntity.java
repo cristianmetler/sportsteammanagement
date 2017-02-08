@@ -12,24 +12,24 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-//@NamedQueries({
-//		@NamedQuery(name = "PlayerEntity.findPlayersByName", query = "SELECT e FROM PlayerEntity e WHERE e.playerName = :playerName"),
-//		@NamedQuery(name = "PlayerEntity.findPlayersBySportsCategory", query = "SELECT e FROM PlayerEntity e WHERE e.sportsCategory = :sportsCategory"),
-//		@NamedQuery(name = "PlayerEntity.findPlayersByIncome", query = "SELECT e FROM PlayerEntity e WHERE e.income = :income"),
-//		@NamedQuery(name = "PlayerEntity.findPlayersByTeamName", query = "SELECT e FROM PlayerEntity e WHERE e.teamName = :teamName"),
-//		@NamedQuery(name = "PlayerEntity.findPlayersByRank", query = "SELECT e FROM PlayerEntity e WHERE e.rank = :rank"),		
-//		@NamedQuery(name = "PlayerEntity.retrieveAllPlayers", query = "SELECT e FROM UserEntity e"),
-//		@NamedQuery(name = "PlayerEntity.deleteAllPlayers", query = "DELETE FROM UserEntity e"),
-//		@NamedQuery(name = "PlayerEntity.deletePlayer", query = "DELETE from PlayerEntity e where e.playerName=:playerName"),
-//		@NamedQuery(name = "PlayerEntity.isPlayerExistent", query = "SELECT e from PlayerEntity e where e.playerName=:playerName")	
-//})
+@NamedQueries({
+		@NamedQuery(name = "PlayerEntity.findPlayersByName", query = "SELECT e FROM PlayerEntity e WHERE e.playerName = :playerName"),
+		@NamedQuery(name = "PlayerEntity.findPlayersBySportsCategory", query = "SELECT e FROM PlayerEntity e WHERE e.sportsCategory = :sportsCategory"),
+		@NamedQuery(name = "PlayerEntity.findPlayersByIncome", query = "SELECT e FROM PlayerEntity e WHERE e.income = :income"),
+		@NamedQuery(name = "PlayerEntity.findPlayersByTeamName", query = "SELECT e FROM PlayerEntity e WHERE e.teamName = :teamName"),
+		@NamedQuery(name = "PlayerEntity.findPlayersByRank", query = "SELECT e FROM PlayerEntity e WHERE e.rank = :rank"),		
+		@NamedQuery(name = "PlayerEntity.retrieveAllPlayers", query = "SELECT e FROM UserEntity e"),
+		@NamedQuery(name = "PlayerEntity.deleteAllPlayers", query = "DELETE FROM UserEntity e"),
+		@NamedQuery(name = "PlayerEntity.deletePlayer", query = "DELETE from PlayerEntity e where e.playerName=:playerName"),
+		@NamedQuery(name = "PlayerEntity.isPlayerExistent", query = "SELECT e from PlayerEntity e where e.playerName=:playerName")	
+})
 @Table(name = "players")
 public class PlayerEntity {
 
 		private static final long serialVersionUID = -6134776758947464648L;
 		
 		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		@GeneratedValue(strategy = GenerationType.TABLE)
 		@Column(name = "id")
 		private long id;
 		

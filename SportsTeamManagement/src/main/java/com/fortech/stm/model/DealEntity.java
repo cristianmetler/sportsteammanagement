@@ -1,7 +1,6 @@
 package com.fortech.stm.model;
 
 import javax.persistence.Column;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +20,7 @@ import javax.validation.constraints.NotNull;
 			// name
 			
 			@Id
-			@GeneratedValue(strategy = GenerationType.IDENTITY)
+			@GeneratedValue(strategy = GenerationType.TABLE)
 			@Column(name = "id")
 			private long id;			
 			
