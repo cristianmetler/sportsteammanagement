@@ -1,6 +1,7 @@
 package com.fortech.stm.controller;
 
 import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,12 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fortech.stm.authentification.AuthenticateUserRequest;
+import com.fortech.stm.model.PlayerEntity;
 import com.fortech.stm.persistence.EncryptionUtils;
 import com.fortech.stm.persistence.UserCredentials;
 import com.fortech.stm.persistence.UserCredentialsDAOImpl;
-import com.fortech.stm.services.DealService;
 import com.fortech.stm.services.PlayerService;
-import com.fortech.stm.services.TeamService;
+import com.fortech.stm.services.impl.DealServiceImpl;
+import com.fortech.stm.services.impl.PlayerServiceImpl;
+import com.fortech.stm.services.impl.TeamServiceImpl;
+
 
 
 
@@ -23,11 +27,11 @@ import com.fortech.stm.services.TeamService;
 public class SportsTeamMGMController {
 
 	 @Autowired
-	 PlayerService playerService;
+	 PlayerServiceImpl playerServiceinjected;
 	 @Autowired 
-	 TeamService teamService;
+	 TeamServiceImpl teamService;
 	 @Autowired
-	 DealService dealService;
+	 DealServiceImpl dealService;
 	 @Autowired
 	 AuthenticateUserRequest authenticateUserRequest;
 	 @Autowired
@@ -61,7 +65,7 @@ public class SportsTeamMGMController {
 	    
 	    
 	    @RequestMapping(value="/ceva", method= RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	    public void login(@RequestBody AuthenticateUserRequest authenticateUserRequest) throws SQLException {
+	    public void login(@RequestBody UserCredentials authenticateUserRequest) throws SQLException {
 	    	UserCredentials user = new UserCredentials();
 	    	user.setUsername(EncryptionUtils.encryptString(authenticateUserRequest.getUsername()));
 	    	user.setPassword(EncryptionUtils.encryptString(authenticateUserRequest.getPassword()));
@@ -80,7 +84,7 @@ public class SportsTeamMGMController {
 	    
 	    
 	    @RequestMapping(value="/register", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
-	    public void performRegistration(@RequestBody AuthenticateUserRequest authenticateUserRequest) throws SQLException {
+	    public void performRegistration(@RequestBody UserCredentials authenticateUserRequest) throws SQLException {
 	    	UserCredentials user = new UserCredentials();
 	    	user.setUsername(EncryptionUtils.encryptString(authenticateUserRequest.getUsername()));
 	    	user.setPassword(EncryptionUtils.encryptString(authenticateUserRequest.getPassword()));
@@ -92,16 +96,11 @@ public class SportsTeamMGMController {
 	    
 	    
 	    @RequestMapping(value="/addplayer", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
-	    public void addPlayer(@RequestBody PlayerService playerService) throws SQLException {
-	    	UserCredentials user = new UserCredentials();
-	    	user.setUsername(EncryptionUtils.encryptString(authenticateUserRequest.getUsername()));
-	    	user.setPassword(EncryptionUtils.encryptString(authenticateUserRequest.getPassword()));
-//	    	if (uc.findUser(user.getUsername()) == null) {
-//	    		uc.save(user);	    		
-//	    	    }
+	    public void addPlayer(@RequestBody PlayerEntity playermodel) throws SQLException {
+	    	playerServiceinjected.createPlayer(playermodel);
 	    }
 	    
-	    
+
 //	 	    @RequestMapping(value="/login/login.jsp", method= RequestMethod.GET)
 //	    public ResponseEntity login(@RequestBody String username, @RequestBody String password) {
 //	 	    	if (!"admin".equals(username) && (!"admin".equals(password))) {

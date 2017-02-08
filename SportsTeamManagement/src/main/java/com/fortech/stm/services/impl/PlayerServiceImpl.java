@@ -2,10 +2,16 @@ package com.fortech.stm.services.impl;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fortech.stm.model.PlayerEntity;
+import com.fortech.stm.persistence.JPAUtility;
+import com.fortech.stm.persistence.UserCredentials;
 import com.fortech.stm.services.PlayerService;
 
 @Service("playerService")
@@ -22,10 +28,6 @@ public class PlayerServiceImpl implements PlayerService {
 		return null;
 	}
 
-	public List<PlayerEntity> findPlayersByIncome(long minimumIncome, long maximumIncome) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public List<PlayerEntity> findPlayersByTeamName(String teamName) {
 		// TODO Auto-generated method stub
@@ -43,8 +45,23 @@ public class PlayerServiceImpl implements PlayerService {
 	}
 
 	public void createPlayer(PlayerEntity player) {
-		// TODO Auto-generated method stub
-		
+		EntityManager em = JPAUtility.getEntityManager();
+		PlayerEntity p = null;
+		  Query q1 =  JPAUtility.getEntityManager().createQuery("SELECT c FROM PlayerEntity c where c.playerName= :playerName").setParameter("playerName", player.getPlayerName());
+		try {
+		   p = (PlayerEntity) q1.getSingleResult();
+		} catch (NoResultException nre) {
+			//do nothing, no result is okay.
+		}  
+		 
+		if (p== null) { 
+			//player does not exist in DB so it can be saved.
+			em.getTransaction().begin();
+			em.persist(player);
+			em.getTransaction().commit();
+	}
+	
+
 	}
 
 	public List<PlayerEntity> retrieveAllPlayers() {

@@ -12,7 +12,7 @@ public class JPAUtility {
 	  @PersistenceContext(unitName = "stmPersistence")
 	  private EntityManager em;
 	  
-	  protected static EntityManager getEntityManager() {
+	  public static EntityManager getEntityManager() {
 	      EntityManagerFactory emf = Persistence.createEntityManagerFactory("stmPersistence");
 	      EntityManager ecm = emf.createEntityManager(); 
 	      return ecm;

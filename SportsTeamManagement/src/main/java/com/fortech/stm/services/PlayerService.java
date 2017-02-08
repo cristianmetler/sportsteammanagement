@@ -11,7 +11,6 @@ public interface PlayerService {
 	
 	List<PlayerEntity> findPlayersBySportsCategory(String sportsCategory);
 	
-	List<PlayerEntity> findPlayersByIncome(long minimumIncome, long maximumIncome);
 	
 	List<PlayerEntity> findPlayersByTeamName(String teamName);
 	
