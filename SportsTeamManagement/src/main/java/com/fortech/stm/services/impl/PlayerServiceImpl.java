@@ -47,9 +47,8 @@ public class PlayerServiceImpl implements PlayerService {
 	public void createPlayer(PlayerEntity player) {
 		EntityManager em = JPAUtility.getEntityManager();
 		PlayerEntity p = null;
-		  Query q1 =  JPAUtility.getEntityManager().createQuery("SELECT c FROM PlayerEntity c where c.playerName= :playerName").setParameter("playerName", player.getPlayerName());
 		try {
-		   p = (PlayerEntity) q1.getSingleResult();
+			p =(PlayerEntity) em.createNamedQuery("PlayerEntity.findPlayersByName").setParameter("playerName",player.getPlayerName()).getSingleResult();
 		} catch (NoResultException nre) {
 			//do nothing, no result is okay.
 		}  

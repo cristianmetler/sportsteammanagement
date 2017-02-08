@@ -12,8 +12,9 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-//@NamedQueries({
-//		@NamedQuery(name = "PlayerEntity.findPlayersByName", query = "SELECT e FROM PlayerEntity e WHERE e.playerName = :playerName"),
+@NamedQueries({
+		@NamedQuery(name = "PlayerEntity.findPlayersByName", query = "SELECT e FROM PlayerEntity e WHERE e.playerName = :playerName"),
+		})
 //		@NamedQuery(name = "PlayerEntity.findPlayersBySportsCategory", query = "SELECT e FROM PlayerEntity e WHERE e.sportsCategory = :sportsCategory"),
 //		@NamedQuery(name = "PlayerEntity.findPlayersByIncome", query = "SELECT e FROM PlayerEntity e WHERE e.income = :income"),
 //		@NamedQuery(name = "PlayerEntity.findPlayersByTeamName", query = "SELECT e FROM PlayerEntity e WHERE e.teamName = :teamName"),
