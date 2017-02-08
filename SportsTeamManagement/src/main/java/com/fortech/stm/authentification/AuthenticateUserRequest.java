@@ -2,6 +2,9 @@ package com.fortech.stm.authentification;
 
 import javax.validation.constraints.NotNull;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class AuthenticateUserRequest {
 
 	    @NotNull

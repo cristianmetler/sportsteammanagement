@@ -11,8 +11,8 @@
         $routeProvider
             .when('/', {
                 controller: 'HomeController',
-                templateUrl: 'home/home.view.html',
-                controllerAs: 'vm'
+                templateUrl: 'home/home.jsp',
+                controllerAs: 'authenticateUserRequest'
             })
 
             .when('/login', {
