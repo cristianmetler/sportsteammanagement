@@ -21,6 +21,5 @@ public class SportsTeamPlayerController {
     @RequestMapping(value="/addplayer", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
     public void addPlayer(@RequestBody PlayerEntity playermodel) throws SQLException {
     	playerServiceinjected.createPlayer(playermodel);
-    }
-    
+    }    
 }

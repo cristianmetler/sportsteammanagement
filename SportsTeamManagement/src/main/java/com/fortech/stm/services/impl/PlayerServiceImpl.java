@@ -51,16 +51,13 @@ public class PlayerServiceImpl implements PlayerService {
 			p =(PlayerEntity) em.createNamedQuery("PlayerEntity.findPlayersByName").setParameter("playerName",player.getPlayerName()).getSingleResult();
 		} catch (NoResultException nre) {
 			//do nothing, no result is okay.
-		}  
-		 
+		}  		 
 		if (p== null) { 
 			//player does not exist in DB so it can be saved.
 			em.getTransaction().begin();
 			em.persist(player);
 			em.getTransaction().commit();
-	}
-	
-
+		}
 	}
 
 	public List<PlayerEntity> retrieveAllPlayers() {

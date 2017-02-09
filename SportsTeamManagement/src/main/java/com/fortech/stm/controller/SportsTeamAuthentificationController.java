@@ -1,6 +1,7 @@
 package com.fortech.stm.controller;
 
 import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,12 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import com.fortech.stm.authentification.AuthenticateUserRequest;
 import com.fortech.stm.persistence.EncryptionUtils;
 import com.fortech.stm.persistence.UserCredentials;
 import com.fortech.stm.persistence.UserCredentialsDAOImpl;
 import com.fortech.stm.services.impl.DealServiceImpl;
-import com.fortech.stm.services.impl.PlayerServiceImpl;
 import com.fortech.stm.services.impl.TeamServiceImpl;
 
 
