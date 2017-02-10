@@ -47,15 +47,16 @@
     
         <div class="form-group">
         <label>Married</label>
-        <input type="checkbox" ng-model="isMarried" >
+        <input type="checkbox" ng-model="isMarried" ng-change="change()" >
         <label>Spouse name</label>
-          <input type="text" name="text" ng-model="playermodel.spouseName" ng-disabled="!isMarried">
+          <input type="text" name="text" ng-model="playermodel.spouseName"  ng-disabled="!isMarried">
     </div>
+    
          <div class="form-group">
         <label>Children</label>
-        <input type="checkbox" ng-model="hasChildren" >
+        <input type="checkbox" ng-model="hasChildren" ng-change="change1()">
         <label>Children names</label>
-          <input type="text" name="text" ng-model="playermodel.childrenDetails" ng-disabled="!hasChildren">
+          <input type="text" name="text1" ng-model="playermodel.childrenDetails" ng-disabled="!hasChildren">
     </div>
     
     
@@ -85,6 +86,10 @@
     </div>
     <input type="checkbox" ng-checked="all">Subscribe to our site's weekly newsletter<br>
 		<button type="submit" class="btn btn-primary" >Add player</button> 
+		<button type="button" class="btn btn-primary" ng-click="backtohome()">Back </button> 
+				<div class="form-group">
+			<button  ng-click="dologout()" >Logout</button>
+		</div>
 </form>
 </div>
 </div>
@@ -95,22 +100,14 @@
     var addpl = angular.module('addplayerApp', []);
     // Controller function and passing $http service and $scope var.
     addpl.controller('addplayerController', function($scope, $http, $window) {
-      // create a blank object to handle form data.
-      
+
+
       // calling our submit function.
         $scope.submitForm = function() {
     	  
-       $scope.playermodel.isMarried = $scope.isMarried == null ? false:$scope.isMarried  ;
-       $scope.playermodel.hasChildren = $scope.hasChildren == null ? false:$scope.hasChildren ;
-       
-       if ($scope.playermodel.isMarried == false) {
-    	   $scope.playermodel.spouseName = "";  
-       }
-       
-       if ($scope.playermodel.hasChildren == false) {
-    	   $scope.playermodel.childrenDetails = "";  
-       }
-       
+       $scope.playermodel.isMarried = $scope.isMarried  ;
+       $scope.playermodel.hasChildren = $scope.hasChildren ;
+            
        
         $http({
           method  : 'POST',
@@ -122,12 +119,36 @@
         	  $window.location.href = '/SportsTeamManagement/home/home.jsp';
           });
         };
+        
+        $scope.dologout = function() {
+        	$window.location.href = '/SportsTeamManagement/login/login.jsp';
+        }
+        
+        
+        $scope.change = function () {
+            if ($scope.isMarried == false) {
+         	   $scope.playermodel.spouseName = "";  
+            }
+        }   
+        
+        $scope.change1 = function () {
+        
+            if ($scope.hasChildren == false) {
+         	   $scope.playermodel.childrenDetails = "";  
+            }
+        }
+        
+        
+        $scope.backtohome = function() {
+        	$window.location.href = '/SportsTeamManagement/home/home.jsp';
+        }
     }); 
   
     addpl.controller('Ctrl', function($scope) {
   $scope.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
 });
-    
+   	
+    	
   
   
 </script>

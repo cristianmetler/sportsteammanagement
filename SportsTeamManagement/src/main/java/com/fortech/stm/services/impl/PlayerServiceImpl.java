@@ -43,12 +43,30 @@ public class PlayerServiceImpl implements PlayerService {
 		// TODO Auto-generated method stub
 		
 	}
+	public PlayerEntity searchPlayer(PlayerEntity player) {
+		EntityManager em = JPAUtility.getEntityManager();
+		PlayerEntity p = null;
+		
+		try {
+			p =(PlayerEntity) em.createNamedQuery("PlayerEntity.PlayerEntity.findPlayersByNameorTeamorCategory")
+					.setParameter("playerName",player.getPlayerName())
+					.setParameter("teamName", player.getTeamName())
+					.setParameter("sportsCategory", player.getSportsCategory())
+					.getSingleResult();
+		} catch (NoResultException nre) {
+			//do nothing, no result is okay.
+		}  	
+		return p;
+	}
+	
 
 	public void createPlayer(PlayerEntity player) {
 		EntityManager em = JPAUtility.getEntityManager();
 		PlayerEntity p = null;
 		try {
-			p =(PlayerEntity) em.createNamedQuery("PlayerEntity.findPlayersByName").setParameter("playerName",player.getPlayerName()).getSingleResult();
+			p =(PlayerEntity) em.createNamedQuery("PlayerEntity.findPlayersByName")
+					.setParameter("playerName",player.getPlayerName())
+					.getSingleResult();
 		} catch (NoResultException nre) {
 			//do nothing, no result is okay.
 		}  		 

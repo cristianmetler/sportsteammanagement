@@ -10,8 +10,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.persistence.NamedQueries;
 
-public class TeamEntity {
-//rating score
+
 	
 	@Entity
 //	@NamedQueries({
@@ -23,7 +22,7 @@ public class TeamEntity {
 //			@NamedQuery(name = "TeamEntity.deleteAllTeams", query = "DELETE FROM TeamEntity e"),
 //	})
 	@Table(name = "teams")
-	public class PlayerEntity {
+	public class TeamEntity {
 
 			private static final long serialVersionUID = -6134776758947464648L;
 
@@ -152,4 +151,3 @@ public class TeamEntity {
 			private String phoneNumber;
 			
 			}
-}
