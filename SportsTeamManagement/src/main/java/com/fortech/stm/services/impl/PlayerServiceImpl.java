@@ -34,13 +34,32 @@ public class PlayerServiceImpl implements PlayerService {
 		return null;
 	}
 
-	public void updatePlayerDetails(PlayerEntity player) {
-		// TODO Auto-generated method stub
+	public void updatePlayer(PlayerEntity player) {
+		EntityManager em = JPAUtility.getEntityManager();
+		try {
+			Query q = em.createQuery("UPDATE PlayerEntity AS c SET c.age = :age WHERE c.playerName= :playerName", PlayerEntity.class);
+					q.setParameter("playerName", player.getPlayerName());
+					q.setParameter("age", player.getAge());
+			int result = q.executeUpdate();
+			System.out.println(result + " checkpoint");
+		} catch (NoResultException nre) {
+			//do nothing, no result is okay.
+		}  	
 		
+
 	}
 
 	public void deletePlayer(PlayerEntity player) {
-		// TODO Auto-generated method stub
+		EntityManager em = JPAUtility.getEntityManager();
+		try {
+			Query q = em.createQuery("DELETE FROM PlayerEntity AS c WHERE c.playerName= :playerName");
+					q.setParameter("playerName", player.getPlayerName());
+			int result = q.executeUpdate();
+			System.out.println(result + " checkpoint");
+		} catch (NoResultException nre) {
+			//do nothing, no result is okay.
+		}  	
+	
 		
 	}
 	public PlayerEntity searchPlayer(PlayerEntity player) {
@@ -48,7 +67,7 @@ public class PlayerServiceImpl implements PlayerService {
 		PlayerEntity p = null;
 		
 		try {
-			p =(PlayerEntity) em.createNamedQuery("PlayerEntity.PlayerEntity.findPlayersByNameorTeamorCategory")
+			p =(PlayerEntity) em.createNamedQuery("PlayerEntity.findPlayersByNameorTeamorCategory")
 					.setParameter("playerName",player.getPlayerName())
 					.setParameter("teamName", player.getTeamName())
 					.setParameter("sportsCategory", player.getSportsCategory())
@@ -96,6 +115,12 @@ public class PlayerServiceImpl implements PlayerService {
 	public List<PlayerEntity> findPlayersByRank(int rank) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void updatePlayerDetails(PlayerEntity player) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

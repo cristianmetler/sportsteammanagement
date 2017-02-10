@@ -1,7 +1,7 @@
 package com.fortech.stm.controller;
 
 import java.sql.SQLException;
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,17 +25,21 @@ public class SportsTeamPlayerController {
     public void addPlayer(@RequestBody PlayerEntity playermodel) throws SQLException {
     	playerServiceinjected.createPlayer(playermodel);
     }  
-    @RequestMapping(value="/searchplayer", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<PlayerEntity> retrieveAllPlayers(@RequestBody PlayerEntity playermodel) throws SQLException {
+    @RequestMapping(value="/searchplayer", method= RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
+    public PlayerEntity retrieveAllPlayers(@RequestBody PlayerEntity playermodel) throws SQLException {
     	PlayerEntity p =playerServiceinjected.searchPlayer(playermodel);
-    	if (p==null) {
-            return new ResponseEntity<PlayerEntity>(HttpStatus.NOT_FOUND);
-    	} 
-
-    	else {
-    		   return new ResponseEntity<PlayerEntity>(p, HttpStatus.OK);
-    	}
+    	
+    		   return p;
+    	
  
     }   
+    @RequestMapping(value="/updateplayer", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
+    public void updatePlayer(@RequestBody PlayerEntity playermodel) throws SQLException {
+    	playerServiceinjected.updatePlayer(playermodel);
+    }
     
+    @RequestMapping(value="/deleteplayer", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
+    public void deletePlayer(@RequestBody PlayerEntity playermodel) throws SQLException {
+    	playerServiceinjected.deletePlayer(playermodel);
+    }
 }
