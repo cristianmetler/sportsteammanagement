@@ -103,7 +103,7 @@
     </div>
     		<button type="button" class="btn btn-primary" ng-click="updateplayerdetails()">Update player in DB</button> 
 		<button type="button" class="btn btn-primary" ng-click="deleteplayer()">Delete player </button> 
-		
+		<button type="button" class="btn btn-primary" ng-click="findallplayers()">Find all players </button> 
 		<button type="button" class="btn btn-primary" ng-click="backtohome()">Back </button> 
 		<div class="form-group">
 			<button  ng-click="dologout()" >Logout</button>
@@ -149,6 +149,9 @@
        
          };
          
+         $scope.findallplayers = function() {
+          	$window.location.href = '/SportsTeamManagement/players/findallplayers.jsp';
+          }
          
          $scope.dologout = function() {
          	$window.location.href = '/SportsTeamManagement/login/login.jsp';

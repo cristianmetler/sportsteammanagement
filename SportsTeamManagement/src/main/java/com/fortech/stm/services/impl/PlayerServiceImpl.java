@@ -37,7 +37,7 @@ public class PlayerServiceImpl implements PlayerService {
 	public void updatePlayer(PlayerEntity player) {
 		EntityManager em = JPAUtility.getEntityManager();
 		try {
-			Query q = em.createQuery("UPDATE PlayerEntity AS c SET c.age = :age WHERE c.playerName= :playerName", PlayerEntity.class);
+			Query q = em.createQuery("UPDATE PlayerEntity AS c SET c.age = :age WHERE c.playerName= :playerName");
 					q.setParameter("playerName", player.getPlayerName());
 					q.setParameter("age", player.getAge());
 			int result = q.executeUpdate();
@@ -59,9 +59,25 @@ public class PlayerServiceImpl implements PlayerService {
 		} catch (NoResultException nre) {
 			//do nothing, no result is okay.
 		}  	
-	
 		
 	}
+		@SuppressWarnings("unchecked")
+		public List<PlayerEntity> findAllPlayers() {
+			EntityManager em = JPAUtility.getEntityManager();
+			List<PlayerEntity> players = null;
+			try {
+				Query q = em.createNamedQuery("PlayerEntity.findAllPlayers");
+						
+				players =q.getResultList();
+
+			} catch (NoResultException nre) {
+				//do nothing, no result is okay.
+			}  	
+			return players;
+	}
+		
+		
+		
 	public PlayerEntity searchPlayer(PlayerEntity player) {
 		EntityManager em = JPAUtility.getEntityManager();
 		PlayerEntity p = null;

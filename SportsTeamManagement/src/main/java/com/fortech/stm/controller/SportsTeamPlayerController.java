@@ -28,11 +28,9 @@ public class SportsTeamPlayerController {
     @RequestMapping(value="/searchplayer", method= RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
     public PlayerEntity retrieveAllPlayers(@RequestBody PlayerEntity playermodel) throws SQLException {
     	PlayerEntity p =playerServiceinjected.searchPlayer(playermodel);
-    	
-    		   return p;
-    	
- 
+    return p;
     }   
+    
     @RequestMapping(value="/updateplayer", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
     public void updatePlayer(@RequestBody PlayerEntity playermodel) throws SQLException {
     	playerServiceinjected.updatePlayer(playermodel);
@@ -42,4 +40,22 @@ public class SportsTeamPlayerController {
     public void deletePlayer(@RequestBody PlayerEntity playermodel) throws SQLException {
     	playerServiceinjected.deletePlayer(playermodel);
     }
+
+
+    
+    @RequestMapping(value="/searchallplayers", method= RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<PlayerEntity> searchAllPlayers() throws SQLException {
+    	List<PlayerEntity> players = playerServiceinjected.findAllPlayers();
+    	return players;
+    }
+
+    @RequestMapping(value="/deleteallplayers", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
+    public void deleteAllPlayers(@RequestBody PlayerEntity playermodel) throws SQLException {
+    	playerServiceinjected.deleteAllPlayers();
+    }
+
+
 }
+
+
+
