@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"> 
 </head>
 <body ng-app="addteamApp" ng-controller="addteamController" >
+<img ng-src="{{angularShield.png}}" />
 <div class="container">
 <div class="col-sm-8 col-sm-offset-2">
     <div class="page-header"><h1>Search/update a player</h1></div>
@@ -101,6 +102,7 @@
         <label>Email Address</label>
         <input type="email" name="input" class="form-control" ng-model="play.emailAddress" >
     </div>
+    <button type="button" class="btn btn-primary" ng-click="clearplayerdetails()">Clear</button>
     		<button type="button" class="btn btn-primary" ng-click="updateplayerdetails()">Update player in DB</button> 
 		<button type="button" class="btn btn-primary" ng-click="deleteplayer()">Delete player </button> 
 		<button type="button" class="btn btn-primary" ng-click="findallplayers()">Find all players </button> 
@@ -125,13 +127,29 @@
     
     var addpl = angular.module('addteamApp', []);
     // Controller function and passing $http service and $scope var.
-    addpl.controller('addteamController', function($scope, $http, $window) {
+    addpl
+    
+    
+    .factory('simpleFactory', function() {
+    var factory = {};
+    var customers = // default values
+    	{playerName: 'joint doggy dogg',age: '45', rank: 'captain kirk',teamName: 'los angeles something', sportsCategory : 'basketball',
+    		income: '900',isMarried: 'false', spouseName: '',hasChildren: 'false', childrenDetails: '',address: 'ceva',ratingScore: '5',
+    		emailAddress: 'addressemail@yahoo.com', phoneNumber: '53453534534'};
+    factory.getCustomers = function() {
+    	return customers;
+    };
+    return factory;
+    
+    })
+    
+    
+    .controller('addteamController', function($scope, $http, $window,simpleFactory) {
 
-
-
+        $scope.play =simpleFactory.getCustomers();
          $scope.submitForm = function() {
 
-       
+
     	  
         $http({
           method  : 'POST',
@@ -144,7 +162,7 @@
           });
         
 
-         
+       
        
        
          };
@@ -164,7 +182,9 @@
          }
          
          
-         
+         $scope.clearplayerdetails = function() {
+        	 $scope.play={};
+         }
          $scope.updateplayerdetails = function() {
        	  
              $http({

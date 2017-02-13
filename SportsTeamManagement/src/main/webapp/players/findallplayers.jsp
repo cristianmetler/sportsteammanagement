@@ -39,7 +39,7 @@
 
 
 </tr>
-  <tr ng-repeat="player in players">
+  <tr ng-repeat="player in players | filter: nameText | orderBy: 'address'">
     <td>{{ player.playerName }}</td>
     <td>{{ player.age }}</td>
     <td>{{ player.rank }}</td>
@@ -61,7 +61,7 @@
   </tr>
 </table>
 
-
+		<button type="button" class="btn btn-primary" ng-click="cleardetails()">Clear </button>
 		<button type="button" class="btn btn-primary" ng-click="backtohome()">Back </button> 
 		<div class="form-group">
 			<button  ng-click="dologout()" >Logout</button>
@@ -95,6 +95,9 @@
 	          });
 	        
 
+	         $scope.cleardetails = function() {
+	        	 $scope.players=[{}];
+	         }
 	         
 	       
 	       

@@ -7,7 +7,7 @@
 <body ng-app="addteamApp" ng-controller="addteamController" >
 <div class="container">
 <div class="col-sm-8 col-sm-offset-2">
-    <div class="page-header"><h1>Make a new team</h1></div>
+    <div class="page-header"><h1>Make a new deal</h1></div>
     <!-- FORM -->
     <form name="userForm" ng-submit="submitForm()">
     <div class="form-group">
