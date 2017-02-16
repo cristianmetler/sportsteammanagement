@@ -3,6 +3,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>      
     <body>
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"> 
+<p></p><p></p><p></p><p></p>
+<h3> {{ loginname }} </h3>
+<p></p><p></p><p></p>
 </head>
 <body ng-app="addteamApp" ng-controller="addteamController" >
 <div class="container">
@@ -31,8 +34,8 @@
     
     var addpl = angular.module('addteamApp', []);
     // Controller function and passing $http service and $scope var.
-    addpl.controller('addteamController', function($scope, $http, $window) {
-
+    addpl.controller('addteamController', function($scope, $http, $window,$rootScope) {
+    	$rootScope.loginname = $window.localStorage.getItem("user") ;
 
       // calling our submit function.
         $scope.submitForm = function() {
@@ -51,6 +54,7 @@
         
         
         $scope.dologout = function() {
+        	$window.localStorage.setItem("user","Please login or register, if you don't have a name");
         	$window.location.href = '/SportsTeamManagement/login/login.jsp';
         }
         

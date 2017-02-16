@@ -3,6 +3,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>      
     <body>
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"> 
+<p></p><p></p><p></p><p></p>
+<h3> {{ loginname }} </h3>
+<p></p><p></p><p></p>
 </head>
 <body ng-app="addteamApp" ng-controller="addteamController" >
 <img ng-src="{{angularShield.png}}" />
@@ -144,8 +147,10 @@
     })
     
     
-    .controller('addteamController', function($scope, $http, $window,simpleFactory) {
-
+    .controller('addteamController', function($scope, $http, $window,simpleFactory,$rootScope) {
+    	
+    	$rootScope.loginname = $window.localStorage.getItem("user") ;
+    	
         $scope.play =simpleFactory.getCustomers();
          $scope.submitForm = function() {
 
@@ -159,6 +164,7 @@
          })
           .success(function(data) {
       	      $scope.play = data;
+      	      
           });
         
 
@@ -172,6 +178,7 @@
           }
          
          $scope.dologout = function() {
+        	 $window.localStorage.setItem("user","Please login or register, if you don't have a name");
          	$window.location.href = '/SportsTeamManagement/login/login.jsp';
          }
          

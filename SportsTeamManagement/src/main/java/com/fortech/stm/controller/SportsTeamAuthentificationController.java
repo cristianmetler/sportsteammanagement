@@ -56,13 +56,22 @@ public class SportsTeamAuthentificationController {
 	    
 	    
 	    @RequestMapping(value="/ceva", method= RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	    public void login(@RequestBody UserCredentials authenticateUserRequest) throws SQLException {
+	    public UserCredentials UserCredentials(@RequestBody UserCredentials authenticateUserRequest) throws SQLException {
 	    	UserCredentials user = new UserCredentials();
+	    	//encrypt the data before searching/saving in DB
 	    	user.setUsername(EncryptionUtils.encryptString(authenticateUserRequest.getUsername()));
 	    	user.setPassword(EncryptionUtils.encryptString(authenticateUserRequest.getPassword()));
-	   // 	if (uc.findUser(user.getUsername()) != null) {
-	    		//uc.save(user);
-	    	 return;
+	    	if ( (uc.findUser(user.getUsername())) == null ) {
+
+	    		uc.save(user);
+	    		
+	    	}
+	    	//decrypt the data when returning to view
+	    	user.setUsername(EncryptionUtils.decryptString(user.getUsername()));
+	    	user.setPassword(EncryptionUtils.decryptString(user.getPassword()));
+	    		return user;
+	    	
+	    	
 
 	    }
 	    

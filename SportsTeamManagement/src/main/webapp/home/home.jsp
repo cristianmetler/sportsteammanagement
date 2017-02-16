@@ -7,10 +7,9 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>  
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"> 
-
-<h1>Hi</h1>
-<p2>You're logged in!!</p2>
-<p>&nbsp;</p>
+<p></p><p></p><p></p><p></p>
+<h3> {{ loginname }} </h3>
+<p></p><p></p><p></p>
 <p><a href="/SportsTeamManagement/teams/createteam.jsp" class="btn btn-primary">Create a new team</a></p>
 <p><a href="/SportsTeamManagement/teams/searchteams.jsp" class="btn btn-primary">Search/Modify teams</a></p>
 <p><a href="/SportsTeamManagement/players/addplayer.jsp" class="btn btn-primary">Add a new player</a></p>
@@ -36,11 +35,13 @@
 <script>
 var app = angular.module('logoutApp', []);
 
-app.controller('logoutController', function($scope, $window) {
+app.controller('logoutController', function($scope,$rootScope, $window) {
 
+	$rootScope.loginname = $window.localStorage.getItem("user") ;
+	
 	$scope.dologout = function() {
 		
-
+		$window.localStorage.setItem("user","Please login or register, if you don't have a name");
 
 
     	$window.location.href = '/SportsTeamManagement/login/login.jsp';
