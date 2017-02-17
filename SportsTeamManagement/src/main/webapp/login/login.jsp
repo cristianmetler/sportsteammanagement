@@ -9,7 +9,7 @@ var app = angular.module('loginregisterApp', []);
 app.controller('loginController', function($scope, $http, $window,$rootScope) {
 	
 
-		$rootScope.loginname = "Please login or register, if you don't have a name!";
+		$rootScope.loginname = "*Please login or register, if you don't have a name!";
 
 	$rootScope.incorrectorlogin=$window.localStorage.getItem("registration");
 	
