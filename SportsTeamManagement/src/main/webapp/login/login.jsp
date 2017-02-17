@@ -7,8 +7,11 @@
 var app = angular.module('loginregisterApp', []);
 
 app.controller('loginController', function($scope, $http, $window,$rootScope) {
-	$rootScope.loginname ="Please login or register, if you don't have a name!";
 	
+
+		$rootScope.loginname = "Please login or register, if you don't have a name!";
+
+	$rootScope.incorrectorlogin=$window.localStorage.getItem("registration");
 	
 	$scope.dologin = function() {
 		var loginname ={};
@@ -27,17 +30,17 @@ app.controller('loginController', function($scope, $http, $window,$rootScope) {
             headers : {'Content-Type': 'application/json'} 
            })
     .success(function(data) {
-    	if (data.username != null || data.username != ""){
+    	if (data != null && data != ""){
     		$rootScope.loginname = 	"Hi," + data.username + ", you are logged in";
-    		
+    		$window.localStorage.setItem("user",$rootScope.loginname);
+    		$window.location.href = '/SportsTeamManagement/home/home.jsp';	
     		
     	}
     	
     	else {
-    		$rootScope.loginname ="Please login or register, if you don't have a name";
+    		window.localStorage.setItem("registration","User does not exist, please register");
+        	$window.location.href = '/SportsTeamManagement/login/login.jsp';
     	}
-    	$window.localStorage.setItem("user",$rootScope.loginname);
-    	$window.location.href = '/SportsTeamManagement/home/home.jsp';	
     });
 
 	};
@@ -71,8 +74,13 @@ app.controller('registerController', function($scope, $http, $window) {
 <div class="page-header"><h1>Welcome to the Sports Teams Management website</h1></div>
 
 <p></p><p></p><p></p><p></p>
-<h3> {{ loginname }} </h3>
+<h5> {{ loginname }} </h5>
 <p></p><p></p><p></p>
+
+<p></p><p></p><p></p><p></p>
+<h5> {{ incorrectorlogin }} </h5>
+<p></p><p></p><p></p>
+
 </head>
 
 

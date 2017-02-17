@@ -56,6 +56,7 @@
         
        $scope.dologout = function () {
     	   $window.localStorage.setItem("user","Please login or register, if you don't have a name");
+    	   $window.localStorage.setItem("registration","");
     	   $window.location.href = '/SportsTeamManagement/login/login.jsp'; 
        }
         

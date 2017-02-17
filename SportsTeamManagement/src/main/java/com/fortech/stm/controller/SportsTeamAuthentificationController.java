@@ -63,7 +63,7 @@ public class SportsTeamAuthentificationController {
 	    	user.setPassword(EncryptionUtils.encryptString(authenticateUserRequest.getPassword()));
 	    	if ( (uc.findUser(user.getUsername())) == null ) {
 
-	    		uc.save(user);
+	    		return null;
 	    		
 	    	}
 	    	//decrypt the data when returning to view
@@ -84,13 +84,19 @@ public class SportsTeamAuthentificationController {
 	    
 	    
 	    @RequestMapping(value="/register", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
-	    public void performRegistration(@RequestBody UserCredentials authenticateUserRequest) throws SQLException {
+	    public UserCredentials performRegistration(@RequestBody UserCredentials authenticateUserRequest) throws SQLException {
 	    	UserCredentials user = new UserCredentials();
 	    	user.setUsername(EncryptionUtils.encryptString(authenticateUserRequest.getUsername()));
 	    	user.setPassword(EncryptionUtils.encryptString(authenticateUserRequest.getPassword()));
-//	    	if (uc.findUser(user.getUsername()) == null) {
-//	    		uc.save(user);	    		
-//	    	    }
+	    	if (uc.findUser(user.getUsername()) == null) {
+	    		uc.save(user);
+		    	user.setUsername(EncryptionUtils.decryptString(user.getUsername()));
+		    	user.setPassword(EncryptionUtils.decryptString(user.getPassword()));
+		    	return user;
+	    	    }
+	    	else {
+	    		return null;
+	    	}
 	    }
 	    
 	    

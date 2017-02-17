@@ -32,7 +32,7 @@
     // Defining angularjs application.
     var register = angular.module('registerApp', []);
     // Controller function and passing $http service and $scope var.
-    register.controller('registerController', function($scope, $http, $window) {
+    register.controller('registerController', function($scope, $http, $window, $rootScope) {
       // create a blank object to handle form data.
         $scope.authenticateUserRequest= {};
       
@@ -45,7 +45,17 @@
           headers : {'Content-Type': 'application/json'} 
          })
           .success(function(data) {
-        	  $window.location.href = '/SportsTeamManagement/home/home.jsp';
+        	  if (data == null || data == "") {
+        		  $rootScope.incorrectorlogin ="The user already exists, please register using another one";
+        		  $window.localStorage.setItem("registration", $rootScope.incorrectorlogin);
+        		  $window.location.href = '/SportsTeamManagement/login/login.jsp';
+        	  }
+        	  else {
+        		  $rootScope.incorrectorlogin ="User successfully registered, please login again";
+        		  $window.localStorage.setItem("registration", $rootScope.incorrectorlogin);
+            	  $window.location.href = '/SportsTeamManagement/login/login.jsp';  
+        	  }
+        	// 
           });
         };
     }); 
