@@ -2,6 +2,7 @@ package com.fortech.stm.controller;
 
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,9 @@ import com.fortech.stm.services.impl.TeamServiceImpl;
 @RestController
 public class SportsTeamAuthentificationController {
 
+	
+	final static Logger logger = Logger.getLogger(SportsTeamAuthentificationController.class);
+	
 	 @Autowired 
 	 TeamServiceImpl teamService;
 	 @Autowired
@@ -62,7 +66,9 @@ public class SportsTeamAuthentificationController {
 	    	user.setUsername(EncryptionUtils.encryptString(authenticateUserRequest.getUsername()));
 	    	user.setPassword(EncryptionUtils.encryptString(authenticateUserRequest.getPassword()));
 	    	if ( (uc.findUser(user.getUsername())) == null ) {
-
+	    		if(logger.isDebugEnabled()){
+	    		    logger.debug("Login user does not exist - you're gonna have to login again");
+	    		}
 	    		return null;
 	    		
 	    	}
@@ -90,6 +96,10 @@ public class SportsTeamAuthentificationController {
 	    	user.setPassword(EncryptionUtils.encryptString(authenticateUserRequest.getPassword()));
 	    	if (uc.findUser(user.getUsername()) == null) {
 	    		uc.save(user);
+	    		if(logger.isDebugEnabled()){
+	    		    logger.debug("User has been registered in the system");
+	    		    logger.error("beach please!");
+	    		}
 		    	user.setUsername(EncryptionUtils.decryptString(user.getUsername()));
 		    	user.setPassword(EncryptionUtils.decryptString(user.getPassword()));
 		    	return user;
