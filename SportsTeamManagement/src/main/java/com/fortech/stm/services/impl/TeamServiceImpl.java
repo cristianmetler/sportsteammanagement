@@ -2,13 +2,18 @@ package com.fortech.stm.services.impl;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fortech.stm.model.PlayerEntity;
 import com.fortech.stm.model.TeamEntity;
+import com.fortech.stm.persistence.JPAUtility;
 import com.fortech.stm.services.TeamService;
 
-@Service("teamService")
+@Service("teamServiceinjected")
 @Transactional
 public class TeamServiceImpl implements TeamService{
 
@@ -37,8 +42,39 @@ public class TeamServiceImpl implements TeamService{
 		
 	}
 
-	public void createTeam(TeamEntity player) {
-		// TODO Auto-generated method stub
+	public TeamEntity searchTeam(TeamEntity team)
+	{
+		EntityManager em = JPAUtility.getEntityManager();
+		TeamEntity p = null;
+		try {
+			p =(TeamEntity) em.createNamedQuery("TeamEntity.findPTeamsByNameOrCategoryOrScore")
+					.setParameter("teamName",team.getTeamName())
+					.setParameter("sportsCategory",team.getSportsCategory())
+					.setParameter("ratingScore", team.getRatingScore())
+					.getSingleResult();
+		} catch (NoResultException nre) {
+			//do nothing, no result is okay.
+		}  		 
+		return p;
+	}
+	
+	
+	public void createTeam(TeamEntity team) {
+		EntityManager em = JPAUtility.getEntityManager();
+		TeamEntity p = null;
+		try {
+			p =(TeamEntity) em.createNamedQuery("TeamEntity.findTeamByTeamName")
+					.setParameter("teamName",team.getTeamName())
+					.getSingleResult();
+		} catch (NoResultException nre) {
+			//do nothing, no result is okay.
+		}  		 
+		if (p== null) { 
+			//player does not exist in DB so it can be saved.
+			em.getTransaction().begin();
+			em.persist(team);
+			em.getTransaction().commit();
+		}
 		
 	}
 

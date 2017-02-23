@@ -14,7 +14,7 @@ import com.fortech.stm.persistence.JPAUtility;
 import com.fortech.stm.persistence.UserCredentials;
 import com.fortech.stm.services.PlayerService;
 
-@Service("playerService")
+@Service("playerServiceinjected")
 @Transactional
 public class PlayerServiceImpl implements PlayerService {
 

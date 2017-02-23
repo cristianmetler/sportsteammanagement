@@ -38,7 +38,7 @@ app.controller('loginController', function($scope, $http, $window,$rootScope) {
     	}
     	
     	else {
-    		window.localStorage.setItem("registration","User does not exist, please register");
+    		window.localStorage.setItem("registration","User does not exist, please login again");
         	$window.location.href = '/SportsTeamManagement/login/login.jsp';
     	}
     });

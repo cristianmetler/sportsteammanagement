@@ -13,14 +13,14 @@ import javax.persistence.NamedQueries;
 
 	
 	@Entity
-//	@NamedQueries({
-//			@NamedQuery(name = "TeamEntity.findTeamsByName", query = "SELECT e FROM TeamEntity e WHERE e.teamName = :teamName"),
-//			@NamedQuery(name = "TeamEntity.findPTeamsBySportsCategory", query = "SELECT e FROM TeamEntity e WHERE e.sportsCategory = :sportsCategory"),
+	@NamedQueries({
+			@NamedQuery(name = "TeamEntity.findTeamByTeamName", query = "SELECT e FROM TeamEntity e WHERE e.teamName = :teamName"),
+			@NamedQuery(name = "TeamEntity.findPTeamsByNameOrCategoryOrScore", query = "SELECT e FROM TeamEntity e WHERE e.teamName = :teamName Or e.sportsCategory = :sportsCategory OR e.ratingScore = :ratingScore ")
 //			@NamedQuery(name = "TeamEntity.findTeamsByRatingScore", query = "SELECT e FROM TeamEntity e WHERE e.ratingScore = :ratingScore"),
 //			@NamedQuery(name = "TeamEntity.deleteTeam", query = "DELETE FROM TeamEntity e WHERE e.teamName = :teamName"),
 //			@NamedQuery(name = "TeamEntity.retrieveAllTeams", query = "SELECT e FROM TeamEntity e"),		
 //			@NamedQuery(name = "TeamEntity.deleteAllTeams", query = "DELETE FROM TeamEntity e"),
-//	})
+	})
 	@Table(name = "teams")
 	public class TeamEntity {
 
@@ -51,6 +51,24 @@ import javax.persistence.NamedQueries;
 			@NotNull
 			@Column(name = "income")
 			private int income;
+			
+			@Column(name = "address", nullable = true, length = 100)
+			private String address;
+			
+			
+			@NotNull
+			@Column(name = "ratingscore")// what rating does the team have, on a scale of 5 to 10
+			private int ratingScore;
+			
+			
+			@NotNull
+			@Column(name="emailaddress")		
+			private String emailAddress;
+			
+			@NotNull
+			@Column(name="phonenumber")		
+			private String phoneNumber;
+			
 			
 			
 			public long getId() {
@@ -133,21 +151,5 @@ import javax.persistence.NamedQueries;
 				this.phoneNumber = phoneNumber;
 			}
 
-			@Column(name = "address", nullable = true, length = 100)
-			private String address;
-			
-			
-			@NotNull
-			@Column(name = "ratingscore")// what rating does the team have, on a scale of 5 to 10
-			private int ratingScore;
-			
-			
-			@NotNull
-			@Column(name="emailaddress")		
-			private String emailAddress;
-			
-			@NotNull
-			@Column(name="phonenumber")		
-			private String phoneNumber;
-			
+
 			}
