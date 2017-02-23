@@ -2,7 +2,7 @@ package com.fortech.stm.controller;
 
 import java.sql.SQLException;
 
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -24,16 +24,33 @@ public class SportsTeamTeamsController {
     	teamServiceinjected.createTeam(teammodel);
     }  
     
-    
-    
-    
-    
     @RequestMapping(value="/searchteam", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
     public TeamEntity searchTeam(@RequestBody TeamEntity teammodel) throws SQLException {
     	TeamEntity te = teamServiceinjected.searchTeam(teammodel);
     	return te;
     }  
     
-	
-	
+    @RequestMapping(value="/updateteam", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
+    public void updateTeam(@RequestBody TeamEntity teammodel) throws SQLException {
+    	teamServiceinjected.createTeam(teammodel);
+    }  
+       
+    @RequestMapping(value="/deleteteam", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
+    public TeamEntity deleteTeam(@RequestBody TeamEntity teammodel) throws SQLException {
+    	TeamEntity te = teamServiceinjected.searchTeam(teammodel);
+    	return te;
+    }  
+    	
+    @RequestMapping(value="/deleteallteams", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
+    public TeamEntity deleteAllTeams(@RequestBody TeamEntity teammodel) throws SQLException {
+    	TeamEntity te = teamServiceinjected.searchTeam(teammodel);
+    	return te;
+    }  
+    	
+    @RequestMapping(value="/findallteams", method= RequestMethod.GET, produces =MediaType.APPLICATION_JSON_VALUE)
+    public List<TeamEntity> findAllTeams() throws SQLException {
+    	List<TeamEntity> list = teamServiceinjected.retrieveAllTeams();
+    	return list;
+    	
+    }  
 }

@@ -30,7 +30,7 @@
     
             <div class="form-group">
         <label>Number of active players</label>
-        <input type="text" name="name" class="form-control" ng-model="teammodel.numberOfteams" required>
+        <input type="text" name="name" class="form-control" ng-model="teammodel.numberOfPlayers" required>
     </div>
     
     

@@ -13,13 +13,46 @@
     <div class="page-header"><h1>Make a new deal</h1></div>
     <!-- FORM -->
     <form name="userForm" ng-submit="submitForm()">
-    <div class="form-group">
-        <label>Player Name</label>
-        <input type="text" name="name" class="form-control" ng-model="playermodel.playerName" required>
+
+
+     <div class="form-group">
+        <label>Deal Name</label>
+        <input type="text" name="name" class="form-control" ng-model="dealmodel.dealName" required>
     </div>
+    
+     <div class="form-group">
+        <label>Valability (years)</label>
+        <input type="text" name="name" class="form-control" ng-model="dealmodel.valability" required>
+    </div>
+    
+    
+        <div class="form-group">
+        <label>Number of players bought</label>
+        <input type="text" name="name" class="form-control" ng-model="dealmodel.numberOfPlayersBought" required>
+    </div> 
+
+        <div class="form-group">
+        <label>Number of players sold</label>
+        <input type="text" name="name" class="form-control" ng-model="dealmodel.numberOfPlayerssold" required>
+    </div> 
+
+        <div class="form-group">
+        <label>Sports Cateogory</label>
+        <input type="text" name="name" class="form-control" ng-model="dealmodel.sportsCategory" required>
+    </div> 
+
+
+        <div class="form-group">
+        <label>Amount Transactioned ( $ )</label>
+        <input type="text" name="name" class="form-control" ng-model="dealmodel.amountTransactioned" required>
+    </div> 
+
+
+
+
 
     <input type="checkbox" ng-checked="all">Subscribe to our site's weekly newsletter<br>
-		<button type="submit" class="btn btn-primary" >Add player</button> 
+		<button type="submit" class="btn btn-primary" >Add deal</button> 
 		<button type="button" class="btn btn-primary" ng-click="backtohome()">Back </button> 
 				<div class="form-group">
 			<button  ng-click="dologout()" >Logout</button>
@@ -43,8 +76,8 @@
        
         $http({
           method  : 'POST',
-          url     : '/SportsTeamManagement/addplayer',
-          data    : $scope.playermodel ,
+          url     : '/SportsTeamManagement/adddeal',
+          data    : $scope.dealmodel ,
           headers : {'Content-Type': 'application/json'} 
          })
           .success(function(data) {

@@ -2,13 +2,14 @@ package com.fortech.stm.services.impl;
 
 import java.util.List;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fortech.stm.model.PlayerEntity;
 import com.fortech.stm.model.TeamEntity;
 import com.fortech.stm.persistence.JPAUtility;
 import com.fortech.stm.services.TeamService;
@@ -70,7 +71,7 @@ public class TeamServiceImpl implements TeamService{
 			//do nothing, no result is okay.
 		}  		 
 		if (p== null) { 
-			//player does not exist in DB so it can be saved.
+			//team does not exist in DB so it can be saved.
 			em.getTransaction().begin();
 			em.persist(team);
 			em.getTransaction().commit();
@@ -78,9 +79,19 @@ public class TeamServiceImpl implements TeamService{
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<TeamEntity> retrieveAllTeams() {
 		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = JPAUtility.getEntityManager();
+		List<TeamEntity> p = null;
+		try {
+			Query q =em.createNamedQuery("TeamEntity.findallteams");
+			p = q.getResultList();
+			
+		} catch (NoResultException nre) {
+			//do nothing, no result is okay.
+		}  
+		return p;
 	}
 
 	public List<TeamEntity> deleteAllTeams() {

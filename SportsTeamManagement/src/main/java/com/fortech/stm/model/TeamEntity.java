@@ -15,8 +15,8 @@ import javax.persistence.NamedQueries;
 	@Entity
 	@NamedQueries({
 			@NamedQuery(name = "TeamEntity.findTeamByTeamName", query = "SELECT e FROM TeamEntity e WHERE e.teamName = :teamName"),
-			@NamedQuery(name = "TeamEntity.findPTeamsByNameOrCategoryOrScore", query = "SELECT e FROM TeamEntity e WHERE e.teamName = :teamName Or e.sportsCategory = :sportsCategory OR e.ratingScore = :ratingScore ")
-//			@NamedQuery(name = "TeamEntity.findTeamsByRatingScore", query = "SELECT e FROM TeamEntity e WHERE e.ratingScore = :ratingScore"),
+			@NamedQuery(name = "TeamEntity.findPTeamsByNameOrCategoryOrScore", query = "SELECT e FROM TeamEntity e WHERE e.teamName = :teamName Or e.sportsCategory = :sportsCategory OR e.ratingScore = :ratingScore "),
+			@NamedQuery(name = "TeamEntity.findallteams", query = "SELECT e FROM TeamEntity e"),
 //			@NamedQuery(name = "TeamEntity.deleteTeam", query = "DELETE FROM TeamEntity e WHERE e.teamName = :teamName"),
 //			@NamedQuery(name = "TeamEntity.retrieveAllTeams", query = "SELECT e FROM TeamEntity e"),		
 //			@NamedQuery(name = "TeamEntity.deleteAllTeams", query = "DELETE FROM TeamEntity e"),

@@ -6,12 +6,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 
 
-	@Entity
+@Entity
+@NamedQueries({
+		@NamedQuery(name = "DealEntity.findTeamByDealName", query = "SELECT e FROM DealEntity e WHERE e.dealName = :dealName")
+//		@NamedQuery(name = "TeamEntity.findPTeamsByNameOrCategoryOrScore", query = "SELECT e FROM TeamEntity e WHERE e.teamName = :teamName Or e.sportsCategory = :sportsCategory OR e.ratingScore = :ratingScore "),
+//		@NamedQuery(name = "TeamEntity.findallteams", query = "SELECT e FROM TeamEntity e"),
+//		@NamedQuery(name = "TeamEntity.deleteTeam", query = "DELETE FROM TeamEntity e WHERE e.teamName = :teamName"),
+//		@NamedQuery(name = "TeamEntity.retrieveAllTeams", query = "SELECT e FROM TeamEntity e"),		
+//		@NamedQuery(name = "TeamEntity.deleteAllTeams", query = "DELETE FROM TeamEntity e"),
+})
 	@Table(name = "deals")
 	public class DealEntity {
 
@@ -27,7 +37,7 @@ import javax.validation.constraints.NotNull;
 			
 			@NotNull
 			@Column(name = "dealname", unique = true, length = 50)
-			private String dealname;
+			private String dealName;
 			
 			@Column(name = "valability") // valability of the deal , expressed in months
 			private int valability;
@@ -57,11 +67,11 @@ import javax.validation.constraints.NotNull;
 			}
 
 			public String getDealname() {
-				return dealname;
+				return dealName;
 			}
 
-			public void setDealname(String dealname) {
-				this.dealname = dealname;
+			public void setDealname(String dealName) {
+				this.dealName = dealName;
 			}
 
 			public int getValability() {

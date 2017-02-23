@@ -48,7 +48,7 @@
     
             <div class="form-group">
         <label>Number of Active Players</label>
-        <input type="text" name="name" class="form-control" ng-model="numberOfPlayers" >
+        <input type="text" name="name" class="form-control" ng-model="play.numberOfPlayers" >
     </div>
     
             <div class="form-group">
