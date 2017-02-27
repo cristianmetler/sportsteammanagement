@@ -13,6 +13,9 @@
     <div class="page-header"><h1>Add a new player</h1></div>
     <!-- FORM -->
     <form name="userForm" ng-submit="submitForm()">
+    
+    
+    
     <div class="form-group">
         <label>Player Name</label>
         <input type="text" name="name" class="form-control" ng-model="playermodel.playerName" required>

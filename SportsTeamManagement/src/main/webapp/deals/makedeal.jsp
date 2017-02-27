@@ -7,18 +7,19 @@
 <h3> {{ loginname }} </h3>
 <p></p><p></p><p></p>
 </head>
-<body ng-app="addteamApp" ng-controller="addteamController" >
+<body ng-app="adddealApp" ng-controller="adddealController" >
 <div class="container">
 <div class="col-sm-8 col-sm-offset-2">
     <div class="page-header"><h1>Make a new deal</h1></div>
     <!-- FORM -->
     <form name="userForm" ng-submit="submitForm()">
 
-
      <div class="form-group">
-        <label>Deal Name</label>
-        <input type="text" name="name" class="form-control" ng-model="dealmodel.dealName" required>
+        <label>deal name</label>
+        <input type="text" name="name" class="form-control" ng-model="dealmodel.desire" required>
     </div>
+
+
     
      <div class="form-group">
         <label>Valability (years)</label>
@@ -50,7 +51,6 @@
 
 
 
-
     <input type="checkbox" ng-checked="all">Subscribe to our site's weekly newsletter<br>
 		<button type="submit" class="btn btn-primary" >Add deal</button> 
 		<button type="button" class="btn btn-primary" ng-click="backtohome()">Back </button> 
@@ -65,9 +65,9 @@
     <script>
     // Defining angularjs application.
     
-    var addpl = angular.module('addteamApp', []);
+    var addpl = angular.module('adddealApp', []);
     // Controller function and passing $http service and $scope var.
-    addpl.controller('addteamController', function($scope, $http, $window,$rootScope) {
+    addpl.controller('adddealController', function($scope, $http, $window,$rootScope) {
 
     	$rootScope.loginname = $window.localStorage.getItem("user") ;
       // calling our submit function.
@@ -76,7 +76,7 @@
        
         $http({
           method  : 'POST',
-          url     : '/SportsTeamManagement/adddeal',
+          url     : '/SportsdealManagement/adddeal',
           data    : $scope.dealmodel ,
           headers : {'Content-Type': 'application/json'} 
          })
@@ -89,7 +89,7 @@
         $scope.dologout = function() {
         	$window.localStorage.setItem("registration","");
         	$window.localStorage.setItem("user","Please login or register, if you don't have a name");
-        	$window.location.href = '/SportsTeamManagement/login/login.jsp';
+        	$window.location.href = '/SportsdealManagement/login/login.jsp';
         }
         
         

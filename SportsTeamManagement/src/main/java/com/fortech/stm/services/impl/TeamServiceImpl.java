@@ -18,28 +18,33 @@ import com.fortech.stm.services.TeamService;
 @Transactional
 public class TeamServiceImpl implements TeamService{
 
-	public List<TeamEntity> findTeamsByName(String playerName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	public List<TeamEntity> findPTeamsBySportsCategory(String sportsCategory) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<TeamEntity> findTeamsByRatingScore(long minimumRatingScore, long maximumRatingScore) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void updateTeamDetails(TeamEntity player) {
-		// TODO Auto-generated method stub
+	public void updateTeamDetails(TeamEntity team) {
+		
+		EntityManager em = JPAUtility.getEntityManager();
+		try {
+			Query q = em.createQuery("UPDATE TeamEntity AS c SET c.foundedInYear =:foundedInYear WHERE c.teamName= :teamName");
+					q.setParameter("playerName", team.getTeamName());
+					q.setParameter("foundedInYear", team.getFoundedInYear());
+			int result = q.executeUpdate();
+			System.out.println(result + " checkpoint");
+		} catch (NoResultException nre) {
+			//do nothing, no result is okay.
+		}  	
 		
 	}
 
-	public void deleteTeam(TeamEntity player) {
-		// TODO Auto-generated method stub
+	public void deleteTeam(TeamEntity team) {
+		EntityManager em = JPAUtility.getEntityManager();
+		try {
+			Query q = em.createQuery("DELETE FROM TeamEntity AS c WHERE c.teamName= :teamName");
+					q.setParameter("teamName", team.getTeamName());
+			int result = q.executeUpdate();
+			System.out.println(result + " checkpoint");
+		} catch (NoResultException nre) {
+			//do nothing, no result is okay.
+		}  	
+		
 		
 	}
 
@@ -102,6 +107,24 @@ public class TeamServiceImpl implements TeamService{
 	public boolean isTeamExistent(TeamEntity team) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public List<TeamEntity> findTeamsByName(String playerName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<TeamEntity> findPTeamsBySportsCategory(String sportsCategory) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<TeamEntity> findTeamsByRatingScore(long minimumRatingScore, long maximumRatingScore) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

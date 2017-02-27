@@ -55,10 +55,6 @@ public class SportsTeamPlayerController {
     	return players;
     }
 
-    @RequestMapping(value="/deleteallplayers", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
-    public void deleteAllPlayers(@RequestBody PlayerEntity playermodel) throws SQLException {
-    	playerServiceinjected.deleteAllPlayers();
-    }
 
 
 }

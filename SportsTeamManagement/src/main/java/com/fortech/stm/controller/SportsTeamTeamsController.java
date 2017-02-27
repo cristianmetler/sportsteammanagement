@@ -32,19 +32,12 @@ public class SportsTeamTeamsController {
     
     @RequestMapping(value="/updateteam", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
     public void updateTeam(@RequestBody TeamEntity teammodel) throws SQLException {
-    	teamServiceinjected.createTeam(teammodel);
+    	teamServiceinjected.updateTeamDetails(teammodel);
     }  
        
     @RequestMapping(value="/deleteteam", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
-    public TeamEntity deleteTeam(@RequestBody TeamEntity teammodel) throws SQLException {
-    	TeamEntity te = teamServiceinjected.searchTeam(teammodel);
-    	return te;
-    }  
-    	
-    @RequestMapping(value="/deleteallteams", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
-    public TeamEntity deleteAllTeams(@RequestBody TeamEntity teammodel) throws SQLException {
-    	TeamEntity te = teamServiceinjected.searchTeam(teammodel);
-    	return te;
+    public void deleteTeam(@RequestBody TeamEntity teammodel) throws SQLException {
+    	teamServiceinjected.deleteTeam(teammodel);
     }  
     	
     @RequestMapping(value="/findallteams", method= RequestMethod.GET, produces =MediaType.APPLICATION_JSON_VALUE)

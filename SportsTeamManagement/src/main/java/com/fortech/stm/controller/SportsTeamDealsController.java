@@ -1,6 +1,8 @@
+
 package com.fortech.stm.controller;
 
 import java.sql.SQLException;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,27 +29,21 @@ public class SportsTeamDealsController {
     }  
     
     @RequestMapping(value="/searchdeal", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
-    public DealEntity searchDeal(@RequestBody DealEntity teammodel) throws SQLException {
-    	DealEntity te = dealServiceinjected.searchDeal(teammodel);
+    public DealEntity searchDeal(@RequestBody DealEntity dealmodel) throws SQLException {
+    	DealEntity te = dealServiceinjected.searchDeal(dealmodel);
     	return te;
     }  
     
-//    @RequestMapping(value="/updateteam", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
-//    public void updateTeam(@RequestBody DealEntity teammodel) throws SQLException {
-//    	teamServiceinjected.createTeam(teammodel);
-//    }  
-//       
+    @RequestMapping(value="/updatedeal", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
+    public void updateTeam(@RequestBody DealEntity teammodel) throws SQLException {
+    	dealServiceinjected.updateDeal(teammodel);
+    }  
+       
     @RequestMapping(value="/deletedeal", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
     public void deleteTeam(@RequestBody DealEntity teammodel) throws SQLException {
     	dealServiceinjected.deleteDeal(teammodel);
     }  
-//    	
-//    @RequestMapping(value="/deleteallteams", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
-//    public DealEntity deleteAllTeams(@RequestBody DealEntity teammodel) throws SQLException {
-//    	DealEntity te = teamServiceinjected.searchTeam(teammodel);
-//    	return te;
-//    }  
-//    	
+ 	
     @RequestMapping(value="/findalldeals", method= RequestMethod.GET, produces =MediaType.APPLICATION_JSON_VALUE)
     public List<DealEntity> findAllTeams() throws SQLException {
     	List<DealEntity> list = dealServiceinjected.retrieveAllDeals();

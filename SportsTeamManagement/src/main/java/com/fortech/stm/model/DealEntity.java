@@ -15,8 +15,8 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @NamedQueries({
-		@NamedQuery(name = "DealEntity.findTeamByDealName", query = "SELECT e FROM DealEntity e WHERE e.dealName = :dealName")
-//		@NamedQuery(name = "TeamEntity.findPTeamsByNameOrCategoryOrScore", query = "SELECT e FROM TeamEntity e WHERE e.teamName = :teamName Or e.sportsCategory = :sportsCategory OR e.ratingScore = :ratingScore "),
+		@NamedQuery(name = "DealEntity.findDealByDealName", query = "SELECT e FROM DealEntity e WHERE e.desire = :desire"),
+		@NamedQuery(name = "TeamEntity.findalldeals", query = "SELECT e FROM TeamEntity e ")
 //		@NamedQuery(name = "TeamEntity.findallteams", query = "SELECT e FROM TeamEntity e"),
 //		@NamedQuery(name = "TeamEntity.deleteTeam", query = "DELETE FROM TeamEntity e WHERE e.teamName = :teamName"),
 //		@NamedQuery(name = "TeamEntity.retrieveAllTeams", query = "SELECT e FROM TeamEntity e"),		
@@ -37,7 +37,7 @@ import javax.validation.constraints.NotNull;
 			
 			@NotNull
 			@Column(name = "dealname", unique = true, length = 50)
-			private String dealName;
+			private String desire;
 			
 			@Column(name = "valability") // valability of the deal , expressed in months
 			private int valability;
@@ -66,12 +66,12 @@ import javax.validation.constraints.NotNull;
 				this.id = id;
 			}
 
-			public String getDealname() {
-				return dealName;
+			public String getDesire() {
+				return desire;
 			}
 
-			public void setDealname(String dealName) {
-				this.dealName = dealName;
+			public void setDesire(String dealName) {
+				this.desire = dealName;
 			}
 
 			public int getValability() {
