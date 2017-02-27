@@ -1,7 +1,6 @@
 <html>  
   <head>    
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>      
-    <body>
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"> 
 <p></p><p></p><p></p><p></p>
 <h3> {{ loginname }} </h3>
@@ -120,7 +119,9 @@
         	$window.location.href = '/SportsdealManagement/login/login.jsp';
         }
         
-        
+    	$scope.findalldeals = function() {
+    		window.location.href = '/SportsTeamManagement/teams/findalldeals.jsp';
+    	}
         
         $scope.backtohome = function() {
         	$window.location.href = '/SportsdealManagement/home/home.jsp';
@@ -128,9 +129,7 @@
     }); 
   
 
-    	$scope.findalldeals = function() {
-    		window.location.href = '/SportsTeamManagement/teams/findalldeals.jsp';
-    	}
+
   
   
 </script>
