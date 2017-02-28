@@ -1,4 +1,6 @@
+CREATE DATABASE `sportsteamsmanagement`; 
 
+USE `sportsteamsmanagement`;
 
 CREATE TABLE `hibernate_sequences` (
 
