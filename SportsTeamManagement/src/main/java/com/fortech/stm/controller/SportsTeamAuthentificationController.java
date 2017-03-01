@@ -25,10 +25,7 @@ public class SportsTeamAuthentificationController {
 	
 	final static Logger logger = Logger.getLogger(SportsTeamAuthentificationController.class);
 	
-	 @Autowired 
-	 TeamServiceImpl teamService;
-	 @Autowired
-	 DealServiceImpl dealService;
+
 	 @Autowired
 	 UserCredentialsDAOImpl uc;
 	     
@@ -40,11 +37,11 @@ public class SportsTeamAuthentificationController {
 	    }	    	    
 	    
 	    @RequestMapping(value="/ceva", method= RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	    public UserCredentials UserCredentials(@RequestBody UserCredentials authenticateUserRequest) throws SQLException {
+	    public UserCredentials login(@RequestBody UserCredentials authenticateUserRequest) throws SQLException {
 	    	UserCredentials user = new UserCredentials();
 	    	//encrypt the data before searching/saving in DB
-	    	user.setUsername(EncryptionUtils.encryptString(authenticateUserRequest.getUsername()));
-	    	user.setPassword(EncryptionUtils.encryptString(authenticateUserRequest.getPassword()));
+	   // 	user.setUsername(EncryptionUtils.encryptString(authenticateUserRequest.getUsername()));
+	   // 	user.setPassword(EncryptionUtils.encryptString(authenticateUserRequest.getPassword()));
 	    	if ( (uc.findUser(user.getUsername())) == null ) {
 	    		if(logger.isDebugEnabled()){
 	    		    logger.debug("Login user does not exist - you're gonna have to login again");
@@ -53,8 +50,8 @@ public class SportsTeamAuthentificationController {
 	    		
 	    	}
 	    	//decrypt the data when returning to view
-	    	user.setUsername(EncryptionUtils.decryptString(user.getUsername()));
-	    	user.setPassword(EncryptionUtils.decryptString(user.getPassword()));
+	    //	user.setUsername(EncryptionUtils.decryptString(user.getUsername()));
+	   // 	user.setPassword(EncryptionUtils.decryptString(user.getPassword()));
     		if(logger.isDebugEnabled()){
     		    logger.debug("User successfully logged in !");
     		}
@@ -70,16 +67,16 @@ public class SportsTeamAuthentificationController {
 	    @RequestMapping(value="/register", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
 	    public UserCredentials performRegistration(@RequestBody UserCredentials authenticateUserRequest) throws SQLException {
 	    	UserCredentials user = new UserCredentials();
-	    	user.setUsername(EncryptionUtils.encryptString(authenticateUserRequest.getUsername()));
-	    	user.setPassword(EncryptionUtils.encryptString(authenticateUserRequest.getPassword()));
+	    //	user.setUsername(EncryptionUtils.encryptString(authenticateUserRequest.getUsername()));
+	    //	user.setPassword(EncryptionUtils.encryptString(authenticateUserRequest.getPassword()));
 	    	if (uc.findUser(user.getUsername()) == null) {
 	    		uc.save(user);
 	    		if(logger.isDebugEnabled()){
 	    		    logger.debug("User has been registered in the system!");
 	    		    logger.error("beach please!");
 	    		}
-		    	user.setUsername(EncryptionUtils.decryptString(user.getUsername()));
-		    	user.setPassword(EncryptionUtils.decryptString(user.getPassword()));
+		 //   	user.setUsername(EncryptionUtils.decryptString(user.getUsername()));
+		   // 	user.setPassword(EncryptionUtils.decryptString(user.getPassword()));
 		    	return user;
 	    	    }
 	    	else {

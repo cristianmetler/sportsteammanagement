@@ -24,8 +24,6 @@ public class UserCredentialsDAOImpl implements UserCredentialsDAO {
 	public void save(UserCredentials userCredentials){
 		EntityManager em = JPAUtility.getEntityManager();
 		em.getTransaction().begin();
-		
-
       em.persist(userCredentials);
       em.getTransaction().commit();
 	}
