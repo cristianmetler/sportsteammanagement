@@ -15,13 +15,6 @@ app.controller('loginController', function($scope, $http, $window,$rootScope) {
 	
 	$scope.dologin = function() {
 		var loginname ={};
-// 		if($scope.authenticateUserRequest.username.length === 0) {
-// 	         $scope.msg = "Enter an username";
-// 	      }
-// 	      if($scope.authenticateUserRequest.password.length === 0) {
-// 	          $scope.msg = "Enter a password";
-// 	       }
-
 
         $http({
             method  : 'POST',

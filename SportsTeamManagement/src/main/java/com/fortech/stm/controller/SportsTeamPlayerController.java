@@ -32,7 +32,7 @@ public class SportsTeamPlayerController {
     
     
     @RequestMapping(value="/searchplayer", method= RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
-    public PlayerEntity retrieveAllPlayers(@RequestBody PlayerEntity playermodel) throws SQLException {
+    public PlayerEntity retrievePlayer(@RequestBody PlayerEntity playermodel) throws SQLException {
     	PlayerEntity p =playerServiceinjected.searchPlayer(playermodel);
     return p;
     }   

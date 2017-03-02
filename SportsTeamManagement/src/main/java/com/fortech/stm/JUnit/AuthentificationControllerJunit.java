@@ -3,12 +3,11 @@ package com.fortech.stm.JUnit;
 
 
 import com.fortech.stm.controller.SportsTeamAuthentificationController;
-import com.fortech.stm.persistence.EncryptionUtils;
+
 import com.fortech.stm.persistence.UserCredentials;
 import com.fortech.stm.persistence.UserCredentialsDAOImpl;
 import com.google.gson.Gson;
 
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -18,12 +17,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.*;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import java.util.Arrays;
-import java.util.List;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -118,8 +112,8 @@ public class AuthentificationControllerJunit {
     	
 
     	UserCredentials user233 = new UserCredentials();
-    	user1.setUsername("tt666t");
-    	user1.setPassword("12345");
+    	user233.setUsername("tt666t");
+    	user233.setPassword("12345");
     	
 
        // when(userCredentialsService.findUser(user1.getUsername())).thenReturn(user1); // returns null
@@ -132,24 +126,27 @@ public class AuthentificationControllerJunit {
         Gson gson = new Gson();
         String authenticateUserRequest = gson.toJson(user233);
 
-          
-          
+        ArgumentCaptor<UserCredentials> argument = ArgumentCaptor.forClass(UserCredentials.class);
+        
+        
+        
         mockMvc.perform(post("/register")
         		.contentType(MediaType.APPLICATION_JSON)
         		.content(authenticateUserRequest) //convert user2 object to JSON object        
         		)     		
                 .andExpect(status().isOk());
 
-
+        verify(userCredentialsService).save(argument.capture());
+        UserCredentials e = argument.getValue();
+        assertEquals("tt666t", argument.getValue().getUsername());
         //verify(userCredentialsService, times(1)).findUser(user1.getUsername());
         verify(userCredentialsService, times(1)).save(any(UserCredentials.class));
-        ArgumentCaptor<UserCredentials> argument = ArgumentCaptor.forClass(UserCredentials.class);
-        verify(userCredentialsService).save(argument.capture());
-      //  assertTrue(argument.getValue().getUsername().contains("tt666t"));
+
+        
+        assertTrue(argument.getValue().getUsername().contains("tt666t"));
         assertEquals("tt666t", argument.getValue().getUsername());
         verify(userCredentialsService).save(eq(user233));
-       // verify(userCredentialsService).save(argThat(new ObjectEqualityArgumentMatcher<Object>(user233)));
-        //verifyNoMoreInteractions(userCredentialsService);
+        verifyNoMoreInteractions(userCredentialsService);
     } 
     
     

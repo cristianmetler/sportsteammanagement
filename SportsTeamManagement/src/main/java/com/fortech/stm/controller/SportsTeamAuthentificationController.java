@@ -67,6 +67,8 @@ public class SportsTeamAuthentificationController {
 	    @RequestMapping(value="/register", method= RequestMethod.POST, consumes =MediaType.APPLICATION_JSON_VALUE)
 	    public UserCredentials performRegistration(@RequestBody UserCredentials authenticateUserRequest) throws SQLException {
 	    	UserCredentials user = new UserCredentials();
+	    	user.setUsername(authenticateUserRequest.getUsername());
+	    	user.setPassword(authenticateUserRequest.getPassword());
 	    //	user.setUsername(EncryptionUtils.encryptString(authenticateUserRequest.getUsername()));
 	    //	user.setPassword(EncryptionUtils.encryptString(authenticateUserRequest.getPassword()));
 	    	if (uc.findUser(user.getUsername()) == null) {
