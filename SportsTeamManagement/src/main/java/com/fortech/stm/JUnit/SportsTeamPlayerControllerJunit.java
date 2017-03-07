@@ -1,10 +1,8 @@
 package com.fortech.stm.JUnit;
 
-import com.fortech.stm.controller.SportsTeamAuthentificationController;
 import com.fortech.stm.controller.SportsTeamPlayerController;
 import com.fortech.stm.model.PlayerEntity;
-import com.fortech.stm.persistence.UserCredentials;
-import com.fortech.stm.persistence.UserCredentialsDAOImpl;
+
 import com.fortech.stm.services.impl.PlayerServiceImpl;
 import com.google.gson.Gson;
 
@@ -18,20 +16,15 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.*;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
+
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -247,7 +240,6 @@ verifyNoMoreInteractions(playerServiceMock);
         .andExpect(jsonPath("$.address").value("address"))
         .andExpect(jsonPath("$.teamName").value("L.A. Lakers"))
         .andExpect(jsonPath("$.playerName").value("Michael Jordan"))
-
         .andExpect(jsonPath("$.hasChildren").isBoolean())
         .andExpect(jsonPath("$.hasChildren").value("false"))
         .andExpect(jsonPath("$.phoneNumber").value("0747108762"))

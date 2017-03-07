@@ -7,7 +7,7 @@
 <body ng-app="registerApp" ng-controller="registerController">
 <div class="container">
 <div class="col-sm-8 col-sm-offset-2">
-    <div class="page-header"><h1>Welcome to the registration page</h1></div>
+    <div class="page-header"><h3>Welcome to the registration page</h3></div>
     <!-- FORM -->
     <form name="userForm" ng-submit="submitForm()">
     <div class="form-group">

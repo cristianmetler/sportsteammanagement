@@ -32,7 +32,7 @@ public class SportsTeamAuthentificationController {
 
 	    @RequestMapping(value="/", method= RequestMethod.GET)
 	    public ModelAndView firstPage() {
-	    return new ModelAndView("redirect:"+"/login/login.jsp");
+	    return new ModelAndView("redirect:"+"/login/index.jsp");
 
 	    }	    	    
 	    
