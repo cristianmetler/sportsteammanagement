@@ -7,6 +7,13 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js'></script>
 
+
+
+<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="/SportsTeamManagement/login/loginorregister.js"></script>
+  	<script type="text/javascript" src="/SportsTeamManagement/register/register.js"></script>
+  
+  
   </head>
   <body ng-app="modulprincipal">
     <div class='container'>
@@ -18,87 +25,16 @@
       </ul>
       
     </div>
-<!--     <div ng-app="modulprincipal"> -->
-<!--    <div ng-controller="loginController"> -->
-<!--    <span ng-bind="moduleName"></span> -->
-</div>
-<!--         <div ng-app="masters"> -->
-<!--    <div ng-controller="registerController"> -->
-<!--    <span ng-bind="moduleName"></span> -->
-<!-- </div> -->
 
-
-
-    <div ui-view=""></div>
     
-    
-    
-    <script type="text/javascript" src="/SportsTeamManagement/login/loginorregister.js"></script>
-   
-    <script>
-   
-    
-    
-    var app = angular.module('modulprincipal', ['ui.router']);
-    	
-    //	,'loginregisterApp'
-    	
 
-//     var app1 = angular.module('loginregisterApp', []);
-//     app1.controller('loginController', ['$scope', function($scope) {
-//         $scope.moduleName = 'loginregisterApp';
-//      }]);
+	<div ui-view=""></div>
+	
 
-//     angular.module('loginregisterApp')
-//     .controller('registerController', ['$scope', function($scope)) {
-//        $scope.moduleName = 'loginregisterApp';
-//     }]);
-    
-    
-    app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider','$controllerProvider', function ($stateProvider, $urlRouterProvider, $locationProvider,$controllerProvider) {
 
-    	
-    	 $controllerProvider.allowGlobals();
-        // For any unmatched url, redirect to root
-        $urlRouterProvider.otherwise("/");
-
-        $stateProvider
-        .state('menuMaster', {
-            abstract: true,
-            templateUrl: 'MenuMaster.html'
-        })
-        .state('leftMaster', {
-            abstract: true,
-            templateUrl: 'LeftMaster.html'
-        })
-        .state('topLeftMaster', {
-            abstract: true,
-            templateUrl: 'TopLeftMaster.html'
-        })
-
-        .state('login', {
-            url: '/login',
-            templateUrl: '/SportsTeamManagement/login/login.jsp',
-        })
-        .state('register', {
-            url: '/register',
-            templateUrl: '/SportsTeamManagement/register/register.jsp',
-        })
-        .state('leftMaster.products', {
-            url: '/products',
-            templateUrl: 'products.html',
-        })
-        .state('topLeftMaster.customer', {
-            url: '/customer',
-            templateUrl: 'customers.html',
-        });
-    }]);
     
     
 
-    
-    
-    </script>
     
   </body>
 
